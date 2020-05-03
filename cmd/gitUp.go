@@ -34,11 +34,6 @@ func gitUpRun(cmd *cobra.Command, args []string) {
 	}
 }
 
-func gitUpHelp() string {
-	fmt.Println("gitUp help called")
-	return `help info about of gitUp cmd`
-}
-
 // process each directory:
 // 1. find a .git dir? execute cmd && exit
 // 2. go through each dir inside...
