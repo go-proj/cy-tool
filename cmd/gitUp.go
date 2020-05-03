@@ -28,9 +28,9 @@ func gitUpRun(cmd *cobra.Command, args []string) {
 			gitUpDir(dir)
 		}
 	} else {
-		bigbase := "/Users/clarkyu/company/bigbase"
-		fmt.Printf("start git_up %v\n", bigbase)
-		gitUpDir(bigbase)
+		dir_php := "/Users/clarkyu/code/php"
+		fmt.Printf("start git_up %v\n", dir_php)
+		gitUpDir(dir_php)
 	}
 }
 
