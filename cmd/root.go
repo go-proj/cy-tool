@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/spf13/cobra"
 	"os"
+	"strings"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
@@ -19,7 +20,14 @@ var rootCmd = &cobra.Command{
 
 	// Uncomment the following line if your bare application has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("rootCmd Run")
+		if len(args) == 0 {
+			if err := cmd.Help(); err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+		} else {
+			fmt.Println( strings.Join(args[:], ",") )
+		}
 	},
 }
 
@@ -40,8 +48,7 @@ func init() {
 	// will be global for your application.
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cy-tool.yaml)")
 
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
+	// Cobra also supports local flags, which will only run when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 

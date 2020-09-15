@@ -54,8 +54,6 @@ func ymlRun(cmd *cobra.Command, args []string) {
 	}
 
 	fmt.Println(cfg.RedisUrl)
-	RedisClient()
-
 	fmt.Println(cfg.MySQLUrl)
 }
 
