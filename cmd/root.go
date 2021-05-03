@@ -15,11 +15,12 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "cy-tool",
-	Short: "clark's cmd tool collection",
-	Long: `old man never die, they just disappear ... `,
+	Short: "老鱼命令合集",
+	Long: `基于Cobra CLI的命令合集`,
 
 	// Uncomment the following line if your bare application has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Hello Cobra CLI")
 		if len(args) == 0 {
 			if err := cmd.Help(); err != nil {
 				fmt.Println(err)

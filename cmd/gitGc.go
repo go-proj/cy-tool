@@ -14,8 +14,8 @@ import (
 // gitGcCmd represents the gitGc command
 var gitGcCmd = &cobra.Command{
 	Use:   "gitGc",
-	Short: "git gc --prune=now --aggressive ",
-	Long: `execute git gc command, to prune history.`,
+	Short: "git gc --prune=now --aggressive [directory]",
+	Long: `执行 git gc 命令, 压缩目标目录中 .git 的空间占用`,
 	Run: gitGcRun,
 }
 
@@ -30,7 +30,7 @@ func init() {
 	// gitGcCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-const GitGcWorkers = 20 // total goroutine
+const GitGcWorkers = 8 // total goroutine
 
 func gitGcRun(cmd *cobra.Command, args []string) {
 	if (len(args) != 0) {
