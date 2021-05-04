@@ -39,7 +39,7 @@ clean:
 ## commit: 快速提交
 commit: clean fmt
 	git add .
-	git commit -m "quick commit @$(TIMESTAMP)"
+	git commit -m "quick save @$(TIMESTAMP)"
 	git push
 
 ## run: 执行当前项目
