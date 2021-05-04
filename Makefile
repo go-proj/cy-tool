@@ -2,6 +2,7 @@
 #include .env
 PROJECT_NAME	 := $(shell basename "$(PWD)")
 TIMESTAMP    	 := $(shell /bin/date "+%F %T")
+VERSION			 := 1.0.0
 
 GOFILES_NOVENDOR := $(shell go list ./... | grep -v /vendor/)
 
@@ -48,13 +49,13 @@ run:
 
 ## build: 编译当前项目
 build:
-	go build -x -race -ldflags "$(LDFLAGS)" -o ./bin/$(PROJECT_NAME) .
+	@go build -x -race -ldflags "$(LDFLAGS)" -o ./bin/$(PROJECT_NAME) .
 
 ## buildall: 编译当前项目，生成全平台binary
 buildall:
-	GOOS=darwin  GOARCH=amd64 go build $(GOFLAGS) -o ./bin/$(PROJECT_NAME)-osx-64         $(PACKAGE)
-	GOOS=linux   GOARCH=amd64 go build $(GOFLAGS) -o ./bin/$(PROJECT_NAME)-linux-64       $(PACKAGE)
-	GOOS=windows GOARCH=amd64 go build $(GOFLAGS) -o ./bin/$(PROJECT_NAME)-windows-64.exe $(PACKAGE)
+	CGO_ENABLED=0 GOOS=linux   GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/bin/$(PROJECT_NAME)-linux-amd64-$(VERSION)
+	CGO_ENABLED=0 GOOS=darwin  GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/bin/$(PROJECT_NAME)-linux-macos-$(VERSION)
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -a -installsuffix cgo -ldflags "$(LDFLAGS)" -o $(CURDIR)/bin/$(PROJECT_NAME)-linux-windows-$(VERSION).exe
 
 
 .PHONY: fmt help
