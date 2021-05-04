@@ -44,7 +44,7 @@ commit: clean fmt
 
 ## run: 执行当前项目
 run:
-	go run main.go
+	@go run main.go
 
 ## build: 编译当前项目
 build:
