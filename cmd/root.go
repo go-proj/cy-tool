@@ -16,7 +16,7 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "cy-tool",
 	Short: "老鱼命令合集",
-	Long: `基于Cobra CLI的命令合集`,
+	Long:  `基于Cobra CLI的命令合集`,
 
 	// Uncomment the following line if your bare application has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
@@ -27,7 +27,7 @@ var rootCmd = &cobra.Command{
 				os.Exit(1)
 			}
 		} else {
-			fmt.Println( strings.Join(args[:], ",") )
+			fmt.Println(strings.Join(args[:], ","))
 		}
 	},
 }

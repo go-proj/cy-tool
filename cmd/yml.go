@@ -1,4 +1,3 @@
-
 package cmd
 
 import (
@@ -15,11 +14,11 @@ import (
 var ymlCmd = &cobra.Command{
 	Use:   "yml",
 	Short: "Read yaml config file, analyze redis",
-	Long: ``,
-	Run: ymlRun,
+	Long:  ``,
+	Run:   ymlRun,
 }
 
-type TT_Cfg struct{
+type TT_Cfg struct {
 	RedisUrl string `yaml:"redis"` // redis://localhost:6379/dbname
 	MySQLUrl string `yaml:"mysql"` // mysql://username:password@protocol(address)/dbname?param=value
 }

@@ -9,10 +9,10 @@ import (
 func DemoIf() bool {
 	fmt.Println(">>> DemoIf")
 
-	tmp := map[string]string {
-		"a":"a",
-		"b":"b",
-		"c":"c",
+	tmp := map[string]string{
+		"a": "a",
+		"b": "b",
+		"c": "c",
 	}
 
 	if ele, ok := tmp["t"]; !ok {
@@ -37,7 +37,7 @@ type DemoS1 struct {
 func DemoStruct() bool {
 	fmt.Println(">>> DemoStruct")
 
-	var t  = DemoS1 {
+	var t = DemoS1{
 		x: 1,
 		y: 2,
 	}
@@ -77,4 +77,3 @@ func DemoError() {
 	var err2 = errors.New("haha")
 	fmt.Println(err2)
 }
-

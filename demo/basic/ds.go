@@ -1,5 +1,5 @@
 package basic
 
-func Demo () {
+func Demo() {
 
 }

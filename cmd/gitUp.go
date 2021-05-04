@@ -15,7 +15,7 @@ import (
 var gitUpCmd = &cobra.Command{
 	Use:   "gitUp",
 	Short: "cd $proj && git pull --recurse-submodules",
-	Long: `cd to the project directory, and then execute 'git pull --recurse-submodules'.`,
+	Long:  `cd to the project directory, and then execute 'git pull --recurse-submodules'.`,
 
 	Run: gitUpRun,
 }
@@ -23,7 +23,7 @@ var gitUpCmd = &cobra.Command{
 const GitUpWorkers = 20 // total goroutine
 
 func gitUpRun(cmd *cobra.Command, args []string) {
-	if (len(args) != 0) {
+	if len(args) != 0 {
 		for _, dir := range args[:] {
 			gitUpDir(dir)
 		}
@@ -38,7 +38,7 @@ func gitUpRun(cmd *cobra.Command, args []string) {
 // 1. find a .git dir? execute cmd && exit
 // 2. go through each dir inside...
 func gitUpDir(dir string) bool {
-	if (strings.Contains(dir, "vendor") || strings.Contains(dir, "3rd_party")) {
+	if strings.Contains(dir, "vendor") || strings.Contains(dir, "3rd_party") {
 		return false
 	}
 
@@ -58,14 +58,14 @@ func gitUpDir(dir string) bool {
 
 		switch mode := fi.Mode(); {
 		case mode.IsDir():
-			if (strings.HasSuffix(item, ".git") && (!strings.Contains(item, "vendor"))) {
+			if strings.HasSuffix(item, ".git") && (!strings.Contains(item, "vendor")) {
 				tmp := strings.Replace(item, "/.git", "", -1)
 				fmt.Println(">>> start git up " + filepath.Base(tmp))
-				ret, err := common.Run("git -C '" + tmp + "' pull --recurse-submodules ", true)
-				if (err != nil) {
-					fmt.Println( err )
+				ret, err := common.Run("git -C '"+tmp+"' pull --recurse-submodules ", true)
+				if err != nil {
+					fmt.Println(err)
 				} else {
-					fmt.Println( string(ret) )
+					fmt.Println(string(ret))
 				}
 			} else {
 				gitUpDir(item)

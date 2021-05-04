@@ -15,8 +15,8 @@ import (
 var gitGcCmd = &cobra.Command{
 	Use:   "gitGc",
 	Short: "git gc --prune=now --aggressive [directory]",
-	Long: `执行 git gc 命令, 压缩目标目录中 .git 的空间占用`,
-	Run: gitGcRun,
+	Long:  `执行 git gc 命令, 压缩目标目录中 .git 的空间占用`,
+	Run:   gitGcRun,
 }
 
 func init() {
@@ -33,7 +33,7 @@ func init() {
 const GitGcWorkers = 8 // total goroutine
 
 func gitGcRun(cmd *cobra.Command, args []string) {
-	if (len(args) != 0) {
+	if len(args) != 0 {
 		for _, dir := range args[:] {
 			gitGcDir(dir)
 		}
@@ -48,7 +48,7 @@ func gitGcRun(cmd *cobra.Command, args []string) {
 // 1. find a .git dir? execute cmd && exit
 // 2. go through each dir inside...
 func gitGcDir(dir string) bool {
-	if (strings.Contains(dir, "vendor") || strings.Contains(dir, "3rd_party")) {
+	if strings.Contains(dir, "vendor") || strings.Contains(dir, "3rd_party") {
 		return false
 	}
 
@@ -68,14 +68,14 @@ func gitGcDir(dir string) bool {
 
 		switch mode := fi.Mode(); {
 		case mode.IsDir():
-			if (strings.HasSuffix(item, ".git") && (!strings.Contains(item, "vendor"))) {
+			if strings.HasSuffix(item, ".git") && (!strings.Contains(item, "vendor")) {
 				tmp := strings.Replace(item, "/.git", "", -1)
 				fmt.Println(">>> start git gc " + filepath.Base(tmp))
-				ret, err := common.Run("git -C '" + tmp + "' gc --prune=now --aggressive ", true)
-				if (err != nil) {
-					fmt.Println( err )
+				ret, err := common.Run("git -C '"+tmp+"' gc --prune=now --aggressive ", true)
+				if err != nil {
+					fmt.Println(err)
 				} else {
-					fmt.Println( string(ret) )
+					fmt.Println(string(ret))
 				}
 			} else {
 				gitGcDir(item) //gothrough folder

@@ -10,7 +10,7 @@ import (
 var configCmd = &cobra.Command{
 	Use:   "config",
 	Short: "display cy-tool config information",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("config called")
 	},

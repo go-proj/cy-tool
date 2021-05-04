@@ -10,7 +10,7 @@ import (
 var lcDebetCmd = &cobra.Command{
 	Use:   "lcDebet",
 	Short: "fetch debet info from EastMoney",
-	Long: ``,
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("lcDebet called")
 	},

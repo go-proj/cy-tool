@@ -10,7 +10,7 @@ import (
 var gitSearchCmd = &cobra.Command{
 	Use:   "gitSearch",
 	Short: "gitSearch dir_name",
-	Long: ``,
+	Long:  ``,
 
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("gitSearchCmd called")

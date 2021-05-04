@@ -25,8 +25,8 @@ import (
 var proxyCheckCmd = &cobra.Command{
 	Use:   "proxyCheck",
 	Short: "check http/socks proxy",
-	Long: `proxyCheck -h host -p port -t type[http/socks]`,
-	Run: proxyCheckRun,
+	Long:  `proxyCheck -h host -p port -t type[http/socks]`,
+	Run:   proxyCheckRun,
 }
 
 func init() {

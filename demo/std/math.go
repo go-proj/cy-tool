@@ -13,9 +13,8 @@ func RandInt(min int, max int) int {
 
 func DemoRand() bool {
 	rand.Seed(time.Now().UnixNano())
-	num := rand.Intn( RandInt(100,999) )
+	num := rand.Intn(RandInt(100, 999))
 	fmt.Printf("rand num: %d\n", num)
 
 	return true
 }
-
