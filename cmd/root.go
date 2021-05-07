@@ -2,12 +2,11 @@ package cmd
 
 import (
 	"fmt"
+	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"os"
 	"strings"
-
-	homedir "github.com/mitchellh/go-homedir"
-	"github.com/spf13/viper"
 )
 
 var cfgFile string
@@ -18,18 +17,18 @@ var rootCmd = &cobra.Command{
 	Short: "老鱼命令合集",
 	Long:  `基于Cobra CLI的命令合集`,
 
-	// Uncomment the following line if your bare application has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Hello Cobra CLI")
-		if len(args) == 0 {
-			if err := cmd.Help(); err != nil {
-				fmt.Println(err)
-				os.Exit(1)
-			}
-		} else {
-			fmt.Println(strings.Join(args[:], ","))
+	Run: rootRun,
+}
+
+func rootRun(cmd *cobra.Command, args []string) {
+	if len(args) == 0 {
+		if err := cmd.Help(); err != nil {
+			fmt.Println(err)
+			os.Exit(1)
 		}
-	},
+	}
+
+	fmt.Println(strings.Join(args[:], ","))
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -55,11 +54,9 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
+	if cfgFile != "" { // Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
-	} else {
-		// Find home directory.
+	} else { // Find home directory.
 		home, err := homedir.Dir()
 		if err != nil {
 			fmt.Println(err)

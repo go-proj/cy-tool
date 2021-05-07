@@ -1,7 +1,5 @@
 package util
 
 func GenMobile() string {
-	var ret string
-
-	return ret
+	return "13612345678"
 }
